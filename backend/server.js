@@ -10,8 +10,12 @@ if (!fs.existsSync("uploads")) {
 }
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, "uploads/"),
-    filename: (req, file, cb) => cb(null, Date.now() + ".jpg")
+    destination: (req, file, cb) => {
+        cb(null, "uploads/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + ".jpg");
+    }
 });
 
 const upload = multer({ storage: storage });
@@ -33,7 +37,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         const plate = response?.results[0]?.plate;
 
         // Delete uploaded image file
-        await fs.unlink(uploadedImagePath);
+        fs.unlinkSync(uploadedImagePath);
 
         if (!plate) {
             return res.status(400).json({ error: "No plate found" });
@@ -45,12 +49,14 @@ app.post("/upload", upload.single("image"), async (req, res) => {
             return res.status(400).json({ error: "Not a Jersey plate" });
         }
 
-        const vehicleInfo = await fetchVehicleInfo(plate);
+        return res.json({ plate });
 
-        if (vehicleInfo === null) {
-            return res.status(404).json({ error: "No vehicle found" });
-        }
-        return res.json(vehicleInfo);
+        // const vehicleInfo = await fetchVehicleInfo(plate);
+
+        // if (vehicleInfo === null) {
+        //     return res.status(404).json({ error: "No vehicle found" });
+        // }
+        // return res.json(vehicleInfo);
     } catch (e) {
         console.error(e);
         return res.status(500).json({ error: "An error has occurred" });

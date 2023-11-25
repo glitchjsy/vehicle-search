@@ -6,7 +6,9 @@
     padding: 0;
 }
 
-html,body,#root {
+html,
+body,
+#root {
     min-height: 100%;
     height: 100%;
 }
@@ -16,13 +18,23 @@ video::-webkit-media-controls {
 }
 
 *::-webkit-media-controls-start-playback-button {
-    display: none!important;
+    display: none !important;
     -webkit-appearance: none;
-  }
+}
+
+input {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    padding: 6px 30px;
+}
+
+.input-wrapper > label {
+    margin-right: 20px;
+}
 
 .error-wrapper {
     position: absolute;
-    background-color: darkred;
+    background-color: rgba(136, 8, 8, 0.7);
     color: white;
     text-align: center;
     margin-left: auto;
@@ -33,34 +45,52 @@ video::-webkit-media-controls {
     padding: 5px 20px;
 }
 
+.settings-wrapper {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 2000;
+    padding: 20px 30px;
+}
+
 .btn {
-    padding: 10px 15px;
-    background-color: #e6e6e6;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1006;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
     width: fit-content;
     cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #c2c2c2;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .btn-capture {
-    position: absolute;
-    z-index: 1000;
-    bottom: 0;
+    bottom: 12px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
     left: 0;
     right: 0;
-    background-color: rgba(0,0,0,0.2);
-    color: white;
-    border: 1px solid white;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
 }
 
-.btn-capture:hover {
-    background-color: rgba(0,0,0,0.2);
+.btn-settings {
+    bottom: 15px;
+    right: 15px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
 }
 
 .btn-close {
@@ -72,13 +102,13 @@ video::-webkit-media-controls {
 }
 
 .btn-close:hover {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .data-wrapper {
     position: absolute;
     z-index: 999;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 15px;
     overflow-y: scroll;
     max-height: 100%;

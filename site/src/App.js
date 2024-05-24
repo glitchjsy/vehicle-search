@@ -3,6 +3,8 @@ import "./App.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import NoCamera from "./NoCamera";
 
+const API_URL = "https://api.vehicle-search.glitch.je";
+
 const useWindowSize = () => {
     const [windowSize, setWindowSize] = useState({
         width: undefined,
@@ -92,8 +94,7 @@ const App = () => {
             const formData = new FormData();
             formData.append("image", blob);
 
-            const uploadResponse = await fetch("http://13.50.119.155/upload", {
-                // const uploadResponse = await fetch("http://192.168.68.105:8080/upload", {
+            const uploadResponse = await fetch(`${API_URL}/upload`, {
                 method: "POST",
                 body: formData
             });
@@ -108,7 +109,7 @@ const App = () => {
             const plate = json?.plate;
             setStage(`Fetching vehicle information... (${plate})`);
 
-            const vehicleResponse = await fetch(`http://13.50.119.155/${plate}`);
+            const vehicleResponse = await fetch(`${API_URL}/${plate}`);
             const vehicleJson = await vehicleResponse.json();
 
             if (vehicleJson?.error) {
@@ -149,6 +150,7 @@ const App = () => {
                     >
                         <img src="/close.svg" height="20" width="20" />
                     </div>
+                    
                     <h2>Settings</h2>
 
                     <div className="input-wrapper" style={{ marginTop: "20px" }}>

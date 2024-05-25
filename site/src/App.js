@@ -3,7 +3,7 @@ import "./App.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import NoCamera from "./NoCamera";
 
-const API_URL = "https://api.vehicle-search.glitch.je";
+const API_URL = "https://api-vehicle-search.glitch.je";
 
 const useWindowSize = () => {
     const [windowSize, setWindowSize] = useState({
@@ -116,6 +116,7 @@ const App = () => {
                 onError(vehicleJson.error);
                 return;
             }
+
             setData(vehicleJson);
             setStage("Waiting...");
         } catch (e) {

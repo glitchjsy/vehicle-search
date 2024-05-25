@@ -34,7 +34,8 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         console.log("Received image: " + uploadedImagePath);
 
         const response = await findPlateFromImage(uploadedImagePath);
-        const plate = response?.results[0]?.plate;
+        // For some reason uploading images has stopped working, so for testing we hardcode a plate number
+        const plate = "J121551";//response?.results[0]?.plate;
 
         // Delete uploaded image file
         fs.unlinkSync(uploadedImagePath);
@@ -50,13 +51,6 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         }
 
         return res.json({ plate });
-
-        // const vehicleInfo = await fetchVehicleInfo(plate);
-
-        // if (vehicleInfo === null) {
-        //     return res.status(404).json({ error: "No vehicle found" });
-        // }
-        // return res.json(vehicleInfo);
     } catch (e) {
         console.error(e);
         return res.status(500).json({ error: "An error has occurred" });

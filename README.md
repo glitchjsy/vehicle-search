@@ -1,6 +1,8 @@
 # Jersey Vehicle Search
 A web app that scans number plates using your phones camera and looks up car information from [gov.je](https://vehicle-search.gov.je).
 
+<img width="250px" src="https://github.com/glitchjsy/vehicle-search/assets/32024335/576974ca-92f2-42bb-a3dc-0b8eb0f4627e">
+
 ## Installation
 This is not a complete guide and assumes you're running on ubuntu.
 
